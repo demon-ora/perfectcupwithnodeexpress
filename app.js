@@ -46,6 +46,7 @@ app.get('/about',homess.abouts);
 app.get('/contact',homess.contacts);
 app.get('/login',authss.logins);
 app.get('/reg',authss.regs);
+app.post('/reg',authss.saves);
 
 app.listen(3000, () => {
     console.log('Server is running at port 3000');
