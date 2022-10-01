@@ -44,3 +44,24 @@ exports.saves = (req, res) => {
       res.redirect('/login');
     });
 }
+exports.loginbaby = (req, res) => {
+    // res.send('CRUD Operation using NodeJS / ExpressJS / MySQL');
+    let sql = "SELECT * FROM users order by id desc";
+    let query = connection.query(sql, (err, rows) => {
+        i=0;
+        if(err) throw err;
+        for(i=0;i<rows.length;i++){
+          
+        if(rows[i].name==req.body.name && rows[i].password==req.body.password){
+            req.session.sname=req.body.name;
+            res.redirect('/');
+            break;}else if (req.body.name=="ora" && req.body.password=="oraora"){
+                req.session.ssname=req.body.name;
+                res.redirect('/dashboarduser');
+            break;
+            }else if(i==rows.length-1 ){  
+                res.redirect('/contact');
+            }
+        } 
+    });
+}

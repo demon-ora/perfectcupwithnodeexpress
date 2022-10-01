@@ -45,6 +45,7 @@ app.get('/',homess.homes);
 app.get('/about',homess.abouts);
 app.get('/contact',homess.contacts);
 app.get('/login',authss.logins);
+app.post('/login',authss.loginbaby);
 app.get('/reg',authss.regs);
 app.post('/reg',authss.saves);
 
