@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const mysql = require('mysql');
 const homess = require('./controller/home');
+const authss = require('./controller/auth');
 
 
 app.use(session({
@@ -43,6 +44,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.get('/',homess.homes);
 app.get('/about',homess.abouts);
 app.get('/contact',homess.contacts);
+app.get('/login',authss.logins);
+app.get('/reg',authss.regs);
 
 app.listen(3000, () => {
     console.log('Server is running at port 3000');
