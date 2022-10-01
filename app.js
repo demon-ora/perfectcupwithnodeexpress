@@ -8,6 +8,7 @@ const app = express();
 const mysql = require('mysql');
 const homess = require('./controller/home');
 const authss = require('./controller/auth');
+const dashboardss = require('./controller/dashboard');
 
 
 app.use(session({
@@ -48,6 +49,15 @@ app.get('/login',authss.logins);
 app.post('/login',authss.loginbaby);
 app.get('/reg',authss.regs);
 app.post('/reg',authss.saves);
+app.get('/blog',homess.blogs);
+app.get('/dashboard',dashboardss.dashboards);
+
+app.get('/dashboard/edit/:userId',dashboardss.edit);
+
+app.post('/dashboard/update',dashboardss.update);
+ 
+app.get('/dashboard/delete/:userId',dashboardss.deletes);
+
 
 app.listen(3000, () => {
     console.log('Server is running at port 3000');

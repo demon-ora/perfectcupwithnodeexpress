@@ -16,3 +16,9 @@ exports.contacts = (req, res) => {
         title : 'contactpage'
     });
 }
+
+exports.blogs = (req, res) => {
+    res.render('blog', {
+        title : 'blogpage'
+    });
+}
