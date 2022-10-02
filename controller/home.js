@@ -52,7 +52,12 @@ exports.savecontacts = (req, res) => {
 }
 
 exports.blogs = (req, res) => {
-    res.render('blog', {
-        title : 'blogpage'
+    let sql = "SELECT * FROM blogs";
+    let query = connection.query(sql, (err, rowss) => {
+        if(err) throw err;
+        res.render('blog', {
+            title : 'blog',
+            blogs : rowss
+        });
     });
 }

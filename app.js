@@ -19,7 +19,7 @@ app.use(session({
 
 app.use(upload());
 app.use(express.static(path.join(__dirname,"static")))
-app.use(express.static(path.join(__dirname,'upload')))
+app.use(express.static(path.join(__dirname,'uploads')))
  
 const connection=mysql.createConnection({
     host:'localhost',
@@ -66,6 +66,16 @@ app.get('/dashboardcontact/edit/:contactId',dashboardss.contactedit);
 app.post('/dashboardcontact/update',dashboardss.contactupdate);
  
 app.get('/dashboardcontact/delete/:contactId',dashboardss.contactdeletes);
+
+
+app.get('/dashboardblog',dashboardss.showblog);
+app.post('/dashboardblog',dashboardss.saveblogs);
+
+app.get('/dashboardblog/edit/:blogId',dashboardss.editblog);
+
+app.post('/dashboardblog/update',dashboardss.updateblog);
+ 
+app.get('/dashboardblog/delete/:blogId',dashboardss.deletesblogs);
 
 
 app.listen(3000, () => {

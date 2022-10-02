@@ -110,3 +110,78 @@ exports.contactdeletes = (req, res) => {
     });
 }
 
+
+exports.showblog = (req, res) => {
+    let sql = "SELECT * FROM blogs";
+    let query = connection.query(sql, (err, rowss) => {
+        if(err) throw err;
+        res.render('dashboardblog', {
+            title : 'blog',
+            blogs : rowss
+        });
+    });
+}
+
+exports.saveblogs = function(req, res){ 
+    var file = req.files.image;
+    var filename = file.name;
+file.mv('./uploads/'+filename,function(err){
+    if(err) throw err;
+})
+    let data = {title: req.body.title, dob: req.body.dob, image: filename , des: req.body.des };
+    let sql = "INSERT INTO blogs SET ?";
+    let query = connection.query(sql, data,(err, results) => {
+      if(err) throw err;
+      res.redirect('/dashboardblog');
+    });
+}
+
+exports.editblog = (req, res) => {
+    const blogId = req.params.blogId;
+    let sql = `Select * from blogs where id = ${blogId}`;
+    let query = connection.query(sql,(err, result) => {
+        if(err) throw err;
+        res.render('editblogs', {
+            title : 'CRUD Operation using NodeJS / ExpressJS / MySQL',
+            blog : result[0]
+        });
+    });
+}
+
+exports.updateblog = (req, res) => {
+    if(req.files){
+       var file = req.files.image;
+    var filename = file.name;
+file.mv('./uploads/'+filename,function(err){
+    if(err) throw err;
+})}else{
+    var filename = req.body.oldimage;
+}
+
+if(req.body.dob){
+    var date = req.body.dob;
+}
+else{
+    var event = new Date(req.body.olddob);
+
+    var date = JSON.stringify(event)
+    date = date.slice(1,11)
+}
+  
+
+    const blogId = req.body.id;
+    let sql = "Update blogs SET title='"+req.body.title+"',  dob='"+date+"',   image='"+filename+"',  des='"+req.body.des+"' where id ="+blogId;
+    let query = connection.query(sql,(err, results) => {
+      if(err) throw err;
+      res.redirect('/dashboardblog');
+    });
+}
+
+exports.deletesblogs = (req, res) => {
+    const blogId = req.params.blogId;
+    let sql = `DELETE from blogs where id = ${blogId}`;
+    let query = connection.query(sql,(err, result) => {
+        if(err) throw err;
+        res.redirect('/dashboardblog');
+    });
+}

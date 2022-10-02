@@ -54,36 +54,19 @@
                     </h2>
                     <hr>
                 </div>
+                <% blogs.forEach(function(blog){ %>
                 <div class="col-lg-12 text-center">
-                    <img class="img-responsive img-border img-full" src="img/slide-1.jpg" alt="">
-                    <h2>COCONUT OIL COFFEE
+                    
+                    <img class="img-responsive img-border img-full" src="<%= blog.image%>" alt="">
+                    <h2><%= blog.title%>
                         <br>
-                        <small>OCTOBER 13, 2016</small>
+                        <small><%= blog.dob%></small>
                     </h2>
-                    <p>Start your morning off with this great recipe for hot coffee with coconut oil and butter.</p>
+                    <p><%= blog.des%></p>
                    
                     <hr>
                 </div>
-                <div class="col-lg-12 text-center">
-                    <img class="img-responsive img-border img-full" src="img/slide-2.jpg" alt="">
-                    <h2>IRISH COFFEE 
-                        <br>
-                        <small>SEPTEMBER, 2014</small>
-                    </h2>
-                    <p>Take the edge off with a Fresh hot cup of coffee made with Irish whiskey and Irish Cream.</p>
-                  
-                    <hr>
-                </div>
-                <div class="col-lg-12 text-center">
-                    <img class="img-responsive img-border img-full" src="img/slide-3.jpg" alt="">
-                    <h2>FROZEN CARAMEL LATTE 
-                        <br>
-                        <small>JULY 18, 2012</small>
-                    </h2>
-                    <p>Sweetened with caramel sauce and topped with whipped cream, this will make you happy any time of day.</p>
-            
-                    <hr>
-                </div>
+                <% }); %>
                 <div class="col-lg-12 text-center">
                     <ul class="pager">
                         <li class="previous"><a href="#">&larr; Older</a>
