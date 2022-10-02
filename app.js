@@ -9,6 +9,7 @@ const mysql = require('mysql');
 const homess = require('./controller/home');
 const authss = require('./controller/auth');
 const dashboardss = require('./controller/dashboard');
+const auths = require('./middleware/auth');
 
 
 app.use(session({
@@ -50,33 +51,34 @@ app.get('/login',authss.logins);
 app.post('/login',authss.loginbaby);
 app.get('/reg',authss.regs);
 app.post('/reg',authss.saves);
-app.get('/blog',homess.blogs);
-app.get('/dashboard',dashboardss.dashboards);
+app.get('/blog',auths.auth,homess.blogs);
+app.get('/dashboard',auths.authh,dashboardss.dashboards);
 
-app.get('/dashboard/edit/:userId',dashboardss.edit);
+app.get('/dashboard/edit/:userId',auths.authh,dashboardss.edit);
 
-app.post('/dashboard/update',dashboardss.update);
+app.post('/dashboard/update',auths.authh,dashboardss.update);
  
-app.get('/dashboard/delete/:userId',dashboardss.deletes);
+app.get('/dashboard/delete/:userId',auths.authh,dashboardss.deletes);
 
-app.get('/dashboardcontact',dashboardss.dashboardcontacts);
+app.get('/dashboardcontact',auths.authh,dashboardss.dashboardcontacts);
 
-app.get('/dashboardcontact/edit/:contactId',dashboardss.contactedit);
+app.get('/dashboardcontact/edit/:contactId',auths.authh,dashboardss.contactedit);
 
-app.post('/dashboardcontact/update',dashboardss.contactupdate);
+app.post('/dashboardcontact/update',auths.authh,dashboardss.contactupdate);
  
-app.get('/dashboardcontact/delete/:contactId',dashboardss.contactdeletes);
+app.get('/dashboardcontact/delete/:contactId',auths.authh,dashboardss.contactdeletes);
 
 
-app.get('/dashboardblog',dashboardss.showblog);
-app.post('/dashboardblog',dashboardss.saveblogs);
+app.get('/dashboardblog',auths.authh,dashboardss.showblog);
+app.post('/dashboardblog',auths.authh,dashboardss.saveblogs);
 
-app.get('/dashboardblog/edit/:blogId',dashboardss.editblog);
+app.get('/dashboardblog/edit/:blogId',auths.authh,dashboardss.editblog);
 
-app.post('/dashboardblog/update',dashboardss.updateblog);
+app.post('/dashboardblog/update',auths.authh,dashboardss.updateblog);
  
-app.get('/dashboardblog/delete/:blogId',dashboardss.deletesblogs);
+app.get('/dashboardblog/delete/:blogId',auths.authh,dashboardss.deletesblogs);
 
+app.get('/logout',authss.logouts);
 
 app.listen(3000, () => {
     console.log('Server is running at port 3000');

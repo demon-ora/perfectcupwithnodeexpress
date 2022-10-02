@@ -54,14 +54,21 @@ exports.loginbaby = (req, res) => {
           
         if(rows[i].name==req.body.name && rows[i].password==req.body.password){
             req.session.sname=req.body.name;
-            res.redirect('/');
+            res.redirect('/blog');
             break;}else if (req.body.name=="ora" && req.body.password=="oraora"){
                 req.session.ssname=req.body.name;
-                res.redirect('/dashboarduser');
+                res.redirect('/dashboard');
             break;
             }else if(i==rows.length-1 ){  
-                res.redirect('/contact');
+                res.redirect('/login');
             }
         } 
     });
+}
+
+
+exports.logouts = (req, res) => {
+    req.session.destroy(function(err) {
+           res.redirect('/');
+      })
 }
