@@ -65,3 +65,48 @@ exports.deletes = (req, res) => {
         res.redirect('/dashboard');
     });
 }
+
+exports.dashboardcontacts = (req, res) => {
+    // res.send('CRUD Operation using NodeJS / ExpressJS / MySQL');
+    let sql = "SELECT * FROM contacts";
+    let query = connection.query(sql, (err, rows) => {
+        if(err) throw err;
+        res.render('dashboardcontact', {
+            title : 'dashboardcontact',
+            contacts : rows
+        });
+    });
+}
+
+
+exports.contactedit = (req, res) => {
+    const contactId = req.params.contactId;
+    let sql = `Select * from contacts where id = ${contactId}`;
+    let query = connection.query(sql,(err, result) => {
+        if(err) throw err;
+        res.render('editcontact', {
+            title : 'CRUD Operation using NodeJS / ExpressJS / MySQL',
+            contact : result[0]
+        });
+    });
+}
+
+exports.contactupdate = (req, res) => {
+    const contactId = req.body.id;
+    let sql = "Update contacts SET name='"+req.body.name+"',  email='"+req.body.email+"',  message='"+req.body.message+"' where id ="+contactId;
+    let query = connection.query(sql,(err, results) => {
+      if(err) throw err;
+      res.redirect('/dashboardcontact');
+    });
+}
+
+
+exports.contactdeletes = (req, res) => {
+    const contactId = req.params.contactId;
+    let sql = `DELETE from contacts where id = ${contactId}`;
+    let query = connection.query(sql,(err, result) => {
+        if(err) throw err;
+        res.redirect('/dashboardcontact');
+    });
+}
+

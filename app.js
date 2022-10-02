@@ -45,6 +45,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.get('/',homess.homes);
 app.get('/about',homess.abouts);
 app.get('/contact',homess.contacts);
+app.post('/contact',homess.savecontacts);
 app.get('/login',authss.logins);
 app.post('/login',authss.loginbaby);
 app.get('/reg',authss.regs);
@@ -57,6 +58,14 @@ app.get('/dashboard/edit/:userId',dashboardss.edit);
 app.post('/dashboard/update',dashboardss.update);
  
 app.get('/dashboard/delete/:userId',dashboardss.deletes);
+
+app.get('/dashboardcontact',dashboardss.dashboardcontacts);
+
+app.get('/dashboardcontact/edit/:contactId',dashboardss.contactedit);
+
+app.post('/dashboardcontact/update',dashboardss.contactupdate);
+ 
+app.get('/dashboardcontact/delete/:contactId',dashboardss.contactdeletes);
 
 
 app.listen(3000, () => {

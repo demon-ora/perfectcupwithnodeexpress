@@ -12,10 +12,10 @@
     <title>The Perfect Cup - Contact</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/business-casual.css" rel="stylesheet">
+    <link href="/css/business-casual.css" rel="stylesheet">
 
     <!-- Fonts -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
@@ -29,7 +29,7 @@
     <![endif]-->
 	
 	<!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="/js/jquery.js"></script>
 	
 
 </head>
@@ -83,20 +83,21 @@
                     </h2>
                     <hr>
                     <div id="add_err2"></div>
-                    <form action="/contact" method="post" class="box">
+                    <form action="/dashboardcontact/update" method="post" class="box">
                         <div class="row">
                             <div class="form-group col-lg-4">
+                                <input type="hidden"  name="id" maxlength="25" class="form-control" value="<%= contact.id %>">
                                 <label>Name</label>
-                                <input type="text" id="fname" name="name" maxlength="25" class="form-control">
+                                <input type="text" id="fname" name="name" maxlength="25" class="form-control" value="<%= contact.name %>">
                             </div>
                             <div class="form-group col-lg-4">
                                 <label>Email Address</label>
-                                <input type="email" id="email" name="email" maxlength="25" class="form-control">
+                                <input type="email" id="email" name="email" maxlength="25" class="form-control" value="<%= contact.email %>">
                             </div>
                             <div class="clearfix"></div>
                             <div class="form-group col-lg-12">
                                 <label>Message</label>
-                                <textarea class="form-control" id="message" name="message" maxlength="100" rows="6"></textarea>
+                                <textarea class="form-control" id="message" name="message" maxlength="100" rows="6"><%= contact.message %></textarea>
                             </div>
                             <div class="form-group col-lg-12">                           
                                 <button type="submit"  id="contact" class="btn btn-default">Submit</button>
@@ -121,7 +122,7 @@
     </footer>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
 
 </body>
 
